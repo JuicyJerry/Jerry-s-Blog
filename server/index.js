@@ -7,7 +7,7 @@ const hostname = "127.0.0.1";
 const { MONGO_URI, PORT } = config;
 
 let mongo_url = "";
-let port = "";
+let port = "8080";
 if (process.env.NODE_ENV === "production") {
   console.log("check ==> pro mode");
   // mongo_url = process.env.MONGO_URI;
