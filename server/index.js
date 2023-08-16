@@ -10,7 +10,8 @@ let mongo_url = "";
 let port = "";
 if (process.env.NODE_ENV === "production") {
   console.log("check ==> pro mode");
-  mongo_url = process.env.MONGO_URI;
+  // mongo_url = process.env.MONGO_URI;
+  mongo_url = MONGO_URI;
   port = process.env.PORT;
 } else {
   console.log("check ==> dev mode");
@@ -40,6 +41,7 @@ const server = http.createServer((req, res) => {
   res.end("Hello World");
 });
 
+console.log("index.js ==> ", port);
 server.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
