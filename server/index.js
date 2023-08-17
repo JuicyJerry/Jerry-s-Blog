@@ -45,5 +45,5 @@ console.log("index.js1 ==> ", port);
 console.log("index.js2 ==> ", process.env.PORT);
 server.listen(process.env.PORT || 5001, hostname, () => {
   // server.listen(port || 5001, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+  console.log(`Server running at http://${hostname}:${process.env.PORT}/`);
 });
