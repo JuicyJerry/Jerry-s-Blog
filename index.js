@@ -42,6 +42,6 @@ const server = http.createServer((req, res) => {
 });
 
 console.log("index.js ==> ", port);
-server.listen(port, hostname, () => {
+server.listen(port || 8080, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
