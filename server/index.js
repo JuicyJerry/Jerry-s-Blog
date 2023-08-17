@@ -7,7 +7,7 @@ const hostname = "127.0.0.1";
 const { MONGO_URI, PORT } = config;
 
 let mongo_url = "";
-let port = 8080;
+let port = 5001;
 if (process.env.NODE_ENV === "production") {
   console.log("check ==> pro mode");
   // mongo_url = process.env.MONGO_URI;
@@ -41,7 +41,9 @@ const server = http.createServer((req, res) => {
   res.end("Hello World");
 });
 
-console.log("index.js ==> ", port);
-server.listen(port || 8080, hostname, () => {
+console.log("index.js1 ==> ", port);
+console.log("index.js2 ==> ", process.env.PORT);
+server.listen(process.env.PORT || 5001, hostname, () => {
+  // server.listen(port || 5001, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
 });
