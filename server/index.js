@@ -1,55 +1,59 @@
-const http = require("http");
-const config = require("./config/index");
-var mongoose = require("mongoose");
+require("dotenv").config();
 
-const hostname = "127.0.0.1";
-// const hostname = "127.0.0.1";
+const express = require("express");
+const mongoose = require("mongoose");
+const Book = require("./model/books");
 
-// const { MONGO_URI, PORT } = config;
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-let mongo_url = "";
-let port = "8080";
-if (process.env.NODE_ENV === "production") {
-  console.log("check ==> pro mode");
-  // mongo_url = process.env.MONGO_URI;
-  mongo_url = process.env.MONGO_URI;
-  port = process.env.PORT;
-} else {
-  console.log("check ==> dev mode");
-  port = process.env.PORT;
-  mongo_url = process.env.MONGO_URI;
-}
+mongoose.set("strictQuery", false);
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(process.env.MONGO_URI);
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+};
 
-console.log("index.js1 ==> ", process.env.MONGO_URI);
-console.log("index.js2 ==> ", mongo_url);
-// var db = mongoose.connection;
-// const connect = mongoose
-//   .connect(mongo_url, { useNewUrlParser: true, useUnifiedTopology: true })
-//   .then(() => console.log("MongoDB Connected..."))
-//   .catch((err) => console.log("error!!!!!!!!", err));
-
-// mongoose
-//   .connect(mongo_url)
-//   .then(() => console.log("MongoDB Connected..."))
-//   .catch((err) => console.log("error!!!!!!!!", err));
-
-// mongoose
-//   .connect(mongo_url)
-//   .then("error", function (e) {
-//     console.log(e, "< === Connection Failed!");
-//   })
-//   .catch("open", function () {
-//     console.log("Connected!");
-//   });
-
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "text/plain");
-  res.send("Hello Heroku World");
-  res.end("Hello World");
+//Routes go here
+app.get("/", (req, res) => {
+  res.send({ title: "Books" });
 });
 
-console.log("index.js ==> ", process.env.PORT);
-server.listen(process.env.PORT, hostname, () => {
-  console.log(`Server running at http://${hostname}:${process.env.PORT}/`);
+app.get("/books", async (req, res) => {
+  const book = await Book.find();
+
+  if (book) {
+    res.json(book);
+  } else {
+    res.send("Something went wrong.");
+  }
+});
+
+app.get("/add-note", async (req, res) => {
+  try {
+    await Book.insertMany([
+      {
+        title: "Sons Of Anarchy",
+        body: "Body text goes here...",
+      },
+      {
+        title: "Games of Thrones",
+        body: "Body text goes here...",
+      },
+    ]);
+    res.json({ Data: "Added" });
+  } catch (error) {
+    console.log("err", +error);
+  }
+});
+
+//Connect to the database before listening
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log("listening for requests");
+  });
 });
