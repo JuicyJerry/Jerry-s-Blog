@@ -21,8 +21,14 @@ if (process.env.NODE_ENV === "production") {
 
 console.log("index.js ==> ", mongo_url);
 // var db = mongoose.connection;
-const connect = mongoose
-  .connect(mongo_url, { useNewUrlParser: true, useUnifiedTopology: true })
+// const connect = mongoose
+//   .connect(mongo_url, { useNewUrlParser: true, useUnifiedTopology: true })
+//   .then(() => console.log("MongoDB Connected..."))
+//   .catch((err) => console.log("error!!!!!!!!", err));
+mongoose
+  .connect(
+    "mongodb+srv://ljh8842:2023Goal@cluster0.l7dbshf.mongodb.net/?retryWrites=true&w=majority"
+  )
   .then(() => console.log("MongoDB Connected..."))
   .catch((err) => console.log("error!!!!!!!!", err));
 
