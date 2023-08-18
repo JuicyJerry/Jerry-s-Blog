@@ -11,5 +11,5 @@ console.log("config, password ====> ", password);
 module.exports = {
   MONGO_URI: `mongodb+srv://${username}:${password}@cluster0.l7dbshf.mongodb.net/?retryWrites=true&w=majority`,
   //   MONGO_URI: `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@cluster0.l7dbshf.mongodb.net/?retryWrites=true&w=majority`,
-  PORT: process.env.PORT,
+  PORT: process.env.PORT || 8080,
 };
