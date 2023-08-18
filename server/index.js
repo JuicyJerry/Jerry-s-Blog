@@ -27,10 +27,11 @@ console.log("index.js2 ==> ", mongo_url);
 //   .connect(mongo_url, { useNewUrlParser: true, useUnifiedTopology: true })
 //   .then(() => console.log("MongoDB Connected..."))
 //   .catch((err) => console.log("error!!!!!!!!", err));
-mongoose
-  .connect(mongo_url)
-  .then(() => console.log("MongoDB Connected..."))
-  .catch((err) => console.log("error!!!!!!!!", err));
+
+// mongoose
+//   .connect(mongo_url)
+//   .then(() => console.log("MongoDB Connected..."))
+//   .catch((err) => console.log("error!!!!!!!!", err));
 
 // mongoose
 //   .connect(mongo_url)
