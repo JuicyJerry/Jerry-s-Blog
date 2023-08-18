@@ -7,6 +7,8 @@ const password = encodeURIComponent(process.env.MONGO_PASSWORD);
 
 console.log("config, username ====> ", username);
 console.log("config, password ====> ", password);
+console.log("config, PORT ====> ", process.env.PORT);
+console.log("config, PORT ====> ", 8080);
 
 module.exports = {
   MONGO_URI: `mongodb+srv://${username}:${password}@cluster0.l7dbshf.mongodb.net/?retryWrites=true&w=majority`,
