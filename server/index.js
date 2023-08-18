@@ -3,6 +3,7 @@ const config = require("./config/index");
 var mongoose = require("mongoose");
 
 const hostname = "127.0.0.1";
+// const hostname = "127.0.0.1";
 
 // const { MONGO_URI, PORT } = config;
 
@@ -43,6 +44,7 @@ mongoose
 const server = http.createServer((req, res) => {
   res.statusCode = 200;
   res.setHeader("Content-Type", "text/plain");
+  res.send("Hello Heroku World");
   res.end("Hello World");
 });
 
