@@ -27,7 +27,8 @@ console.log("index.js ==> ", mongo_url);
 //   .catch((err) => console.log("error!!!!!!!!", err));
 mongoose
   .connect(
-    "mongodb+srv://ljh8842:2023Goal@cluster0.l7dbshf.mongodb.net/?retryWrites=true&w=majority"
+    mongo_url
+    // "mongodb+srv://ljh8842:2023Goal@cluster0.l7dbshf.mongodb.net/?retryWrites=true&w=majority"
   )
   .then(() => console.log("MongoDB Connected..."))
   .catch((err) => console.log("error!!!!!!!!", err));
