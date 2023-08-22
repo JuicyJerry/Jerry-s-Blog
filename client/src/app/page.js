@@ -1,9 +1,24 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
 
 export default function Home() {
+  const handleClick = async () => {
+    console.log("request start ===> ");
+    const result = await axios.get("https://git.heroku.com/jerry-blog.git", {
+      "Content-Type": "application/json; charset=UTF-8",
+    });
+  };
+
   return (
     <div className="container">
+      <input
+        type="button"
+        value="DB 임의의 데이터 요청하기"
+        className="req_data"
+        onClick={handleClick}
+      />
       <div className="contents detail_view">
         Lorem Ipsum is simply dummy text of the printing and typesetting
         industry. Lorem Ipsum has been the industry's standard dummy text ever
@@ -223,7 +238,6 @@ export default function Home() {
         with desktop publishing software like Aldus PageMaker including versions
         of Lorem Ipsum.
       </div>
-      ;
     </div>
   );
 }
